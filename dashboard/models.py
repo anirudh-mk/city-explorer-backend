@@ -14,5 +14,13 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    @classmethod
+    def email_exists(cls, email):
+        return cls.objects.filter(email=email).exists()
+
     class Meta:
         db_table = 'user'
