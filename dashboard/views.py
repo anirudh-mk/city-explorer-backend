@@ -3,6 +3,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from .serializer import CreateUserSerializer
 from utils.response import CustomResponse
+from utils.permissions import TokenGenerate
 
 
 class CreateUserAPI(APIView):
@@ -29,10 +30,11 @@ class UserLoginAPI(APIView):
             ).get_failure_response()
 
         user = authenticate(request, email=email, password=password)
-
+        auth = TokenGenerate().generate(user)
         if user:
             return CustomResponse(
                 general_message="successfully login",
+                response=auth
             ).get_success_response()
         else:
             return CustomResponse(
