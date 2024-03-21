@@ -24,9 +24,9 @@ python manage.py runserver
 ### API References
 Location Api
 ```commandline
-'https://openweathermap.org/api'
+https://openweathermap.org/api
 ```
-
-'https://openweathermap.org/api'
 Weather Api
-'https://foursquare.com/developers/home'
+```commandline
+https://foursquare.com/developers/home
+```
