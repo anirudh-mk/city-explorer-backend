@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+from decouple import config as decouple_config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -77,15 +78,14 @@ WSGI_APPLICATION = "main.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "me",
-        "USER": "root",
-        "PASSWORD": "admin",
-        "HOST": "localhost",
-        "PORT": "3306",
+        "ENGINE": decouple_config('DATABASE_ENGINE'),
+        "NAME": decouple_config('DATABASE_NAME'),
+        "USER": decouple_config('DATABASE_USER'),
+        "PASSWORD": decouple_config('DATABASE_PASSWORD'),
+        "HOST": decouple_config('DATABASE_HOST'),
+        "PORT": decouple_config('DATABASE_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
